@@ -23,13 +23,9 @@ window.onload = function() {
 			balls.addBall(createBall());
 		}
 	},
-	getInstructions = function() {
-		return "\nDOWN arrow: remove balls";
-	},
 	renderText = function() {
 		ctx.font = "40pt sans-serif";
 		var ballCount = "Balls: " + balls.numberOfBalls(),
-		instructions = getInstructions(),
 		ballCountTextWidth = ctx.measureText(ballCount).width,
 		centerX = width / 2 - ballCountTextWidth / 2;
 
@@ -63,6 +59,9 @@ window.onload = function() {
 		}
 
 		renderText();
+		fps.update();
+		fps.draw();
+		console.log(fps.fps());
 	},
 	createBall = function() {
 		return ball(ctx, {
@@ -70,8 +69,9 @@ window.onload = function() {
 			y: Math.random(5, ctx.canvas.height)
 		},
 		Math.random(1, 20), colors.getRandomColor(), Math.random(MIN_BALL_SIZE, MAX_BALL_SIZE));
-	};
-	balls = ballManager(ctx);
+	},
+	balls = ballManager(ctx),
+	fps = fpsCounter(ctx, 1);
 
 	window.onresize = function() {
 		setCanvasWidth();
