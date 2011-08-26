@@ -2,15 +2,26 @@
 	<head>
 		<style>
 			body {
-				margin:0px;
-				padding:0px;
+  margin: 0px;
 			}
 		</style>
 	</head>
 	<body>
-		<script src="windowsize.js"></script>
-		<script src="hsv.js"></script>
-		<script src="main.js"></script>
+		<script>
+			(function() {
+				var nativeRandom = Math.random;
+				Math.random = function(from, to) {
+					return Math.floor(nativeRandom() * (to - from + 1) + from);
+				};
+			} ());
+		</script>
+
+		<!--<script src="js/windowsize.js"></script>-->
+		<script src="js/keys.js"></script>
+		<script src="js/colors.js"></script>
+		<script src="js/ball.js"></script>
+		<script src="js/ballmanager.js"></script>
+		<script src="js/main.js"></script>
 
 		<canvas id="canvas"></canvas>
 	</body>
